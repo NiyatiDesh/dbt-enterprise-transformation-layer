@@ -1,0 +1,14 @@
+sources:
+  - name: source  #same as schema name
+    database: '{{ target.catalog }}' #catalog name in databricks  
+    schema: source 
+    tables: #table is basically a key, within which we have list of dictionaries
+      - name: fact_sales
+      - name: fact_returns
+      - name: dim_date
+      - name: dim_store
+      - name: dim_product
+      - name: dim_customer
+      - name: items
+
+ 
