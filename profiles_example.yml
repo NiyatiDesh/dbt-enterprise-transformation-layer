@@ -1,0 +1,28 @@
+# profiles.yml.example
+# INSTRUCTIONS: 
+# 1. Copy this file and rename it to 'profiles.yml'
+# 2. Replace placeholders with your actual Databricks credentials
+# 3. NEVER commit the actual 'profiles.yml' to version control
+
+niyati_dbt:
+  outputs:
+    dev:
+      type: databricks
+      catalog: [YOUR_DEV_CATALOG_NAME] 
+      host: [YOUR_DATABRICKS_HOST]    
+      http_path: [YOUR_HTTP_PATH]     
+      schema: [YOUR_DEV_SCHEMA]      
+      threads: 1
+      # Best practice: use environment variables for sensitive tokens
+      token: "{{ env_var('DBT_DATABRICKS_TOKEN') }}" 
+      
+    prod:
+      type: databricks
+      catalog: [YOUR_PROD_CATALOG_NAME]
+      host: [YOUR_DATABRICKS_HOST]
+      http_path: [YOUR_HTTP_PATH]
+      schema: [YOUR_PROD_SCHEMA]
+      threads: 4 # Production typically uses more threads for performance
+      token: "{{ env_var('DBT_DATABRICKS_PROD_TOKEN') }}"
+      
+  target: dev
